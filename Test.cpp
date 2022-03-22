@@ -83,7 +83,7 @@ int checkFunction(func foo, args arg, Notebook book, Direction dir = Direction::
             CHECK_THROWS(book.write(INT_MIN,1,1,dir,str));
             
             for(int i=-1; i> -100; i--)
-                CHECK_THROWS(book.write(-1,1,1,dir,str));
+                CHECK_THROWS(book.write(i,1,1,dir,str));
         }
         else if(arg == args::row){
             // CHECK ROW
@@ -102,7 +102,7 @@ int checkFunction(func foo, args arg, Notebook book, Direction dir = Direction::
             CHECK_THROWS(book.write(1,1,2000,dir,str));
             CHECK_THROWS(book.write(1,1,123456678,dir,str));
             for(int i=-1; i> -100; i--)
-                CHECK_THROWS(book.write(1,1,-1,dir,str));
+                CHECK_THROWS(book.write(1,1,i,dir,str));
         }
         else if(arg == args::custom){
             // CHECK str, dir
