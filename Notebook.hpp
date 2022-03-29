@@ -2,41 +2,33 @@
 #include <string.h>
 #include <iostream>
 #include <unordered_map>
+#include <stdbool.h>
 
 #define EMPTY_ROW "____________________________________________________________________________________________________"
+#define C_COLUMNS   "   0         1         2         3         4         5         6         7         8         9         "
+#define EVEN_COLUMNS "   0 2 4 6 8 0 2 4 6 8 0 2 4 6 8 0 2 4 6 8 0 2 4 6 8 0 2 4 6 8 0 2 4 6 8 0 2 4 6 8 0 2 4 6 8 0 2 4 6 8 "
+#define ODD_COLUMNS "     1 3 5 7 9 1 3 5 7 9 1 3 5 7 9 1 3 5 7 9 1 3 5 7 9 1 3 5 7 9 1 3 5 7 9 1 3 5 7 9 1 3 5 7 9 1 3 5 7 9"
 using namespace std;
 namespace ariel{
     class Notebook{
         private:
             unordered_map<int, unordered_map<int,string> > _pages;
             int _numPages;
-            int _maxRow;
-            unordered_map<int, string> Notebook::getPage(int numPage)  const 
-            {
-                if (_pages.find(numPage) == _pages.end()){
-                    throw invalid_argument("page not found");
-                }
-                return _pages.at(numPage);
-            } 
-            string getRow(int pageNum, int numRow) const
-            {
-                unordered_map<int, string> page = getPage(pageNum);
-                if (page.find(numRow) == page.end()){
-                    return EMPTY_ROW;
-                }
-                return _pages.at(pageNum).at(numRow);
-            }
-            void update_row(int pageNum, int row, string & _row)
-            {
-                getPage(pageNum).at(row) = _row;
-            }
-        public:
-            void Notebook::write(int page, int row, int column, Direction dir, string str);
-            string Notebook::read(int page, int row, int column, Direction dir, int len);
-            void Notebook::erase(int page, int row, int column, Direction dir, int len);
-            void Notebook::show(int page);
+            unordered_map<int, int> max_row;
+            unordered_map<int, string> getPage(int numPage)  const ;
+            string getRow(int pageNum, int numRow) const;
+            void update_row(int pageNum, int row, string & _row);
             
-
+        public:
+            Notebook();
+            void write(int page, int row, int column, Direction dir, string str);
+            string read(int page, int row, int column, Direction dir, int len) const; 
+            void erase(int page, int row, int column, Direction dir, int len);
+            void show(int page) const;
+            void printNextRow(int numPage, int row) const;
+            void printPage(int numPage) const;
+            bool validifyRowExistence(int numPage, int rowNum) const;
+            void addPage(const int numPage);
     };
 }
 
