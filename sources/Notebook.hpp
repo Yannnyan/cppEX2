@@ -18,17 +18,18 @@ namespace ariel{
             unordered_map<int, string> getPage(int numPage)  const ;
             string getRow(int pageNum, int numRow) const;
             void update_row(int pageNum, int row, string & _row);
-            
-        public:
-            Notebook();
-            void write(int page, int row, int column, Direction dir, string str);
-            string read(int page, int row, int column, Direction dir, int len) const; 
-            void erase(int page, int row, int column, Direction dir, int len);
-            void show(int page) const;
+            void checkValidString(string str);
             void printNextRow(int numPage, int row) const;
             void printPage(int numPage) const;
             bool validifyRowExistence(int numPage, int rowNum) const;
             void addPage(const int numPage);
+            
+        public:
+            Notebook();
+            void write(int page, int row, int column, Direction dir, string str);
+            string read(int page, int row, int column, Direction dir, int len); 
+            void erase(int page, int row, int column, Direction dir, int len);
+            void show(int page);
     };
 }
 

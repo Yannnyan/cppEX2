@@ -17,14 +17,19 @@ using namespace std;
 int main() {
 	ariel::Notebook notebook;
 	notebook.write(/*page=*/100, /*row=*/100, /*column=*/50, Direction::Horizontal, "abcd");
+	//notebook.write(101, 100,50, Direction::Vertical, "xdxd");
+	//notebook.write(101,100,40,Direction::Vertical, "hehexd");
 	cout << notebook.read(/*page=*/100, /*row=*/99, /*column=*/51, Direction::Vertical, /*length=*/3) << endl;  
 		// prints "_b_" (starts at row 99 which is empty; then at row 100 there is "b"; then row 101 is empty again).
-	notebook.write(/*page=*/100, /*row=*/99, /*column=*/52, Direction::Vertical, "xyz");
+	// notebook.write(/*page=*/100, /*row=*/96, /*column=*/52, Direction::Vertical, "xyz");
+	// notebook.write(/*page=*/100, /*row=*/100, /*column=*/50, Direction::Vertical, "abcd");
+	//notebook.write(100, 101, 50, Direction::Horizontal, "hahahahah");
 		// throws error because writing the letter y will intersect with the letter c
-	//notebook.erase(/*page=*/100, /*row=*/99, /*column=*/51, Direction::Vertical, /*length=*/3);
+	notebook.erase(/*page=*/100, /*row=*/96, /*column=*/51, Direction::Vertical, /*length=*/3);
 		// writes ~ instead of _ in line 99, b in line 100 and _ again in line 99
 
 	notebook.show(100); // shows the notebook's page in a reasonable way. For example:
+	//notebook.show(101);
 		//    98:  _________
 		//    99:  ___~_____
 		//    100: __a~cd___
